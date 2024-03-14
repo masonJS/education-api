@@ -17,7 +17,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js', './data-source/**/*'],
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -53,9 +53,9 @@ module.exports = {
     ],
     'padding-line-between-statements': [
       'error',
-      { blankLine: 'always', prev: '*', next: 'return' },
-      { blankLine: 'always', prev: '*', next: 'block' },
-      { blankLine: 'always', prev: '*', next: 'block-like' },
+      {blankLine: 'always', prev: '*', next: 'return'},
+      {blankLine: 'always', prev: '*', next: 'block'},
+      {blankLine: 'always', prev: '*', next: 'block-like'},
     ],
     'import/order': [
       'error',
@@ -68,7 +68,7 @@ module.exports = {
     curly: 1,
     'arrow-body-style': ['error', 'as-needed'],
     eqeqeq: ['error', 'always'],
-    'no-else-return': ['error', { allowElseIf: false }],
+    'no-else-return': ['error', {allowElseIf: false}],
     'max-nested-callbacks': ['error', 5],
     'no-return-await': 'off',
   },

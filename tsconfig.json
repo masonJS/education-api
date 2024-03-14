@@ -22,6 +22,20 @@
     "noImplicitOverride": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "useUnknownInCatchVariables": false
+    "useUnknownInCatchVariables": false,
+    "paths": {
+      "@app/libs": [
+        "libs/libs/src"
+      ],
+      "@app/libs/*": [
+        "libs/libs/src/*"
+      ],
+      "@app/domain": [
+        "libs/domain/src"
+      ],
+      "@app/domain/*": [
+        "libs/domain/src/*"
+      ]
+    }
   }
 }
