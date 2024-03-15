@@ -24,17 +24,17 @@
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": false,
     "paths": {
-      "@app/libs": [
-        "libs/libs/src"
-      ],
-      "@app/libs/*": [
-        "libs/libs/src/*"
-      ],
       "@app/domain": [
         "libs/domain/src"
       ],
       "@app/domain/*": [
         "libs/domain/src/*"
+      ],
+      "@app/web-client": [
+        "libs/web-client/src"
+      ],
+      "@app/web-client/*": [
+        "libs/web-client/src/*"
       ]
     }
   }
