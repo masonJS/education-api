@@ -4,10 +4,16 @@ import { TransactionService } from '@app/entity/transaction/TransactionService';
 import { CourseController } from './CourseController';
 import { CourseService } from './CourseService';
 import { CourseRepository } from './CourseRepository';
+import { CourseValidator } from './CourseValidator';
 
 @Module({
   imports: [EntityModule],
   controllers: [CourseController],
-  providers: [TransactionService, CourseService, CourseRepository],
+  providers: [
+    TransactionService,
+    CourseService,
+    CourseRepository,
+    CourseValidator,
+  ],
 })
 export class CourseModule {}

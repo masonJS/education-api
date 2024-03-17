@@ -7,6 +7,7 @@ import { CourseCategory } from '@app/entity/domain/course/type/enum/CourseCatego
 import { CourseFactory } from '../../../../../libs/entity/test/factory/CourseFactory';
 import { CourseService } from '../../../src/course/CourseService';
 import { CourseRepository } from '../../../src/course/CourseRepository';
+import { CourseValidator } from '../../../src/course/CourseValidator';
 
 describe('CourseService', () => {
   let courseService: CourseService;
@@ -16,7 +17,12 @@ describe('CourseService', () => {
   beforeAll(async () => {
     const module = await Test.createTestingModule({
       imports: [getRealDBModule(), EntityModule],
-      providers: [CourseService, TransactionService, CourseRepository],
+      providers: [
+        CourseService,
+        CourseValidator,
+        TransactionService,
+        CourseRepository,
+      ],
     }).compile();
 
     dataSource = module.get(DataSource);
