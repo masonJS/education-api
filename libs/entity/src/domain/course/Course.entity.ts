@@ -24,6 +24,7 @@ export class Course extends BaseEntity {
   @Column({
     type: 'timestamptz',
     transformer: new LocalDateTimeTransformer(),
+    nullable: true,
   })
   publishedAt: LocalDateTime;
 
@@ -62,7 +63,8 @@ export class Course extends BaseEntity {
     this.category = category;
   }
 
-  publish() {
+  publish(now = LocalDateTime.now()) {
     this.status = CourseStatus.PUBLISH;
+    this.publishedAt = now;
   }
 }

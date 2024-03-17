@@ -40,6 +40,10 @@ export abstract class BaseFactory<Entity extends ObjectLiteral> {
     return await this.entityManager.findOneOrFail(this.entity, options);
   }
 
+  async find(options?: FindOneOptions<Entity>): Promise<Entity[]> {
+    return await this.entityManager.find(this.entity, options);
+  }
+
   async clear(): Promise<void> {
     return this.entityManager.clear(this.entity);
   }
