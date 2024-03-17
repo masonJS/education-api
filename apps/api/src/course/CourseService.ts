@@ -18,6 +18,7 @@ export class CourseService {
     instructorId: number,
   ) {
     await this.courseValidator.duplicateCourseTitle(title);
+    await this.courseValidator.existInstructor(instructorId);
 
     await this.transactionService.transaction(async (manager) => {
       const course = Course.create(title, description, category, instructorId);

@@ -5,6 +5,7 @@ import { CourseController } from './CourseController';
 import { CourseService } from './CourseService';
 import { CourseRepository } from './CourseRepository';
 import { CourseValidator } from './CourseValidator';
+import { InstructorRepository } from '../instructor/InstructorRepository';
 
 @Module({
   imports: [EntityModule],
@@ -14,6 +15,7 @@ import { CourseValidator } from './CourseValidator';
     CourseService,
     CourseRepository,
     CourseValidator,
+    InstructorRepository,
   ],
 })
 export class CourseModule {}

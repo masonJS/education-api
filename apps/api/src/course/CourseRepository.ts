@@ -7,11 +7,11 @@ import { Repository } from 'typeorm';
 export class CourseRepository {
   constructor(
     @InjectRepository(Course)
-    private readonly courseRepository: Repository<Course>,
+    private readonly repository: Repository<Course>,
   ) {}
 
   async findOneByTitle(title: string): Promise<Course | null> {
-    return await this.courseRepository.findOneBy({
+    return await this.repository.findOneBy({
       title,
     });
   }

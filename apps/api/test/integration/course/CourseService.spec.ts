@@ -8,10 +8,13 @@ import { CourseFactory } from '../../../../../libs/entity/test/factory/CourseFac
 import { CourseService } from '../../../src/course/CourseService';
 import { CourseRepository } from '../../../src/course/CourseRepository';
 import { CourseValidator } from '../../../src/course/CourseValidator';
+import { InstructorRepository } from '../../../src/instructor/InstructorRepository';
+import { InstructorFactory } from '../../../../../libs/entity/test/factory/InstructorFactory';
 
 describe('CourseService', () => {
   let courseService: CourseService;
   let courseFactory: CourseFactory;
+  let instructorFactory: InstructorFactory;
   let dataSource: DataSource;
 
   beforeAll(async () => {
@@ -22,6 +25,7 @@ describe('CourseService', () => {
         CourseValidator,
         TransactionService,
         CourseRepository,
+        InstructorRepository,
       ],
     }).compile();
 
@@ -29,23 +33,16 @@ describe('CourseService', () => {
 
     courseService = module.get(CourseService);
     courseFactory = new CourseFactory(dataSource.createEntityManager());
+    instructorFactory = new InstructorFactory(dataSource.createEntityManager());
   });
 
-  beforeEach(async () => courseFactory.clear());
+  beforeEach(async () =>
+    Promise.all([courseFactory.clear(), instructorFactory.clear()]),
+  );
 
   afterAll(async () => dataSource.destroy());
 
   describe('create', () => {
-    it('강의를 생성한다.', async () => {
-      // given, when
-      await courseService.create('title', 'description', CourseCategory.WEB, 1);
-
-      // then
-      const result = await courseFactory.find();
-      expect(result).toHaveLength(1);
-      expect(result[0].title).toBe('title');
-    });
-
     it('이미 존재하는 강의가 있는 경우 에러를 발생한다.', async () => {
       // given
       const course = await courseFactory.save();
@@ -62,6 +59,39 @@ describe('CourseService', () => {
       await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(
         `"이미 존재하는 강의명입니다."`,
       );
+    });
+
+    it('존재하지 않은 강사인 경우 에러를 발생한다.', async () => {
+      // given, when
+      const result = courseService.create(
+        'title',
+        'description',
+        CourseCategory.WEB,
+        1,
+      );
+
+      // then
+      await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(
+        `"존재하지 않는 강사입니다."`,
+      );
+    });
+
+    it('강의를 생성한다.', async () => {
+      // given
+      const instructor = await instructorFactory.save();
+
+      // when
+      await courseService.create(
+        'title',
+        'description',
+        CourseCategory.WEB,
+        instructor.id,
+      );
+
+      // then
+      const result = await courseFactory.find();
+      expect(result).toHaveLength(1);
+      expect(result[0].title).toBe('title');
     });
   });
 });
