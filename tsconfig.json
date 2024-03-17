@@ -24,17 +24,35 @@
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": false,
     "paths": {
-      "@app/domain": [
-        "libs/domain/src"
-      ],
-      "@app/domain/*": [
-        "libs/domain/src/*"
-      ],
       "@app/web-client": [
         "libs/web-client/src"
       ],
       "@app/web-client/*": [
         "libs/web-client/src/*"
+      ],
+      "@app/logger": [
+        "libs/logger/src"
+      ],
+      "@app/logger/*": [
+        "libs/logger/src/*"
+      ],
+      "@app/entity": [
+        "libs/entity/src"
+      ],
+      "@app/entity/*": [
+        "libs/entity/src/*"
+      ],
+      "@app/config": [
+        "libs/config/src"
+      ],
+      "@app/config/*": [
+        "libs/config/src/*"
+      ],
+      "@app/web-common": [
+        "libs/web-common/src"
+      ],
+      "@app/web-common/*": [
+        "libs/web-common/src/*"
       ]
     }
   }

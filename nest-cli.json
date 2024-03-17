@@ -19,15 +19,6 @@
         "tsConfigPath": "apps/api/tsconfig.app.json"
       }
     },
-    "domain": {
-      "type": "library",
-      "root": "libs/domain",
-      "entryFile": "index",
-      "sourceRoot": "libs/domain/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/domain/tsconfig.lib.json"
-      }
-    },
     "web-client": {
       "type": "library",
       "root": "libs/web-client",
@@ -35,6 +26,42 @@
       "sourceRoot": "libs/web-client/src",
       "compilerOptions": {
         "tsConfigPath": "libs/web-client/tsconfig.lib.json"
+      }
+    },
+    "logger": {
+      "type": "library",
+      "root": "libs/logger",
+      "entryFile": "index",
+      "sourceRoot": "libs/logger/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/logger/tsconfig.lib.json"
+      }
+    },
+    "entity": {
+      "type": "library",
+      "root": "libs/entity",
+      "entryFile": "index",
+      "sourceRoot": "libs/entity/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/entity/tsconfig.lib.json"
+      }
+    },
+    "config": {
+      "type": "library",
+      "root": "libs/config",
+      "entryFile": "index",
+      "sourceRoot": "libs/config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/config/tsconfig.lib.json"
+      }
+    },
+    "web-common": {
+      "type": "library",
+      "root": "libs/web-common",
+      "entryFile": "index",
+      "sourceRoot": "libs/web-common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/web-common/tsconfig.lib.json"
       }
     }
   }
