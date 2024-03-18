@@ -5,7 +5,7 @@ import { EntityModule } from '@app/entity/EntityModule';
 import { TransactionService } from '@app/entity/transaction/TransactionService';
 import { CourseCategory } from '@app/entity/domain/course/type/enum/CourseCategory';
 import { CourseFactory } from '../../../../../libs/entity/test/factory/CourseFactory';
-import { CourseService } from '../../../src/course/CourseService';
+import { CourseService } from '../../../src/course/service/CourseService';
 import { CourseRepository } from '../../../src/course/CourseRepository';
 import { CourseValidator } from '../../../src/course/CourseValidator';
 import { InstructorRepository } from '../../../src/instructor/InstructorRepository';

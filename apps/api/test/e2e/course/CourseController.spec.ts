@@ -4,9 +4,13 @@ import { setNestApp } from '@app/web-common/middleware/setNestApp';
 import { mock, mockReset } from 'jest-mock-extended';
 import { CourseCategory } from '@app/entity/domain/course/type/enum/CourseCategory';
 import * as request from 'supertest';
+import { Course } from '@app/entity/domain/course/Course.entity';
+import { Instructor } from '@app/entity/domain/instructor/Instructor.entity';
 import { ApiModule } from '../../../src/ApiModule';
-import { CourseService } from '../../../src/course/CourseService';
-import { CourseRequest } from '../../../src/course/dto/CourseRequest';
+import { CourseService } from '../../../src/course/service/CourseService';
+import { CourseCreateRequest } from '../../../src/course/controller/dto/CourseCreateRequest';
+import { CourseFindAllRequest } from '../../../src/course/controller/dto/CourseFindAllRequest';
+import { CourseSearchCategory } from '../../../src/course/type/enum/CourseSearchCategory';
 
 describe('CourseController', () => {
   let app: INestApplication;
@@ -33,7 +37,7 @@ describe('CourseController', () => {
 
   it('POST /v1/course 강의를 생성한다.', async () => {
     // given
-    const dto = new CourseRequest();
+    const dto = new CourseCreateRequest();
     dto.title = 'title';
     dto.description = 'description';
     dto.category = CourseCategory.DATA;
@@ -50,6 +54,47 @@ describe('CourseController', () => {
     expect(response.body).toMatchInlineSnapshot(`
       {
         "data": "",
+        "message": "",
+        "statusCode": "OK",
+      }
+    `);
+  });
+
+  it('GET /v1/course 강의 목록을 조회한다.', async () => {
+    // given
+    const dto = new CourseFindAllRequest();
+    dto.category = CourseCategory.DATA;
+    dto.searchKeyword = 'searchKeyword';
+    dto.searchCategory = CourseSearchCategory.COURSE_TITLE;
+
+    const instructor = new Instructor();
+    instructor.id = 1;
+    instructor.name = 'name';
+
+    const course = Course.create(
+      'title',
+      'description',
+      CourseCategory.DATA,
+      instructor.id,
+    );
+
+    mockCourseService.findAll.mockResolvedValue([course]);
+
+    // when
+    const response = await request(app.getHttpServer())
+      .get('/api/v1/course')
+      .send(dto);
+
+    // then
+    expect(response.body).toMatchInlineSnapshot(`
+      {
+        "data": [
+          {
+            "category": 2,
+            "description": "description",
+            "title": "title",
+          },
+        ],
         "message": "",
         "statusCode": "OK",
       }

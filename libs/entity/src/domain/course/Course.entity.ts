@@ -67,4 +67,8 @@ export class Course extends BaseEntity {
     this.status = CourseStatus.PUBLISH;
     this.publishedAt = now;
   }
+
+  get instructorName() {
+    return this.instructor.name;
+  }
 }

@@ -1,7 +1,7 @@
 import { IsEnum, IsInt, IsNotEmpty, IsString } from 'class-validator';
 import { CourseCategory } from '@app/entity/domain/course/type/enum/CourseCategory';
 
-export class CourseRequest {
+export class CourseCreateRequest {
   @IsString()
   @IsNotEmpty()
   title: string;
