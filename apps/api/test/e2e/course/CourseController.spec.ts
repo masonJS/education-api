@@ -78,7 +78,7 @@ describe('CourseController', () => {
       instructor.id,
     );
 
-    mockCourseService.findAll.mockResolvedValue([course]);
+    mockCourseService.findAll.mockResolvedValue([[course], 1]);
 
     // when
     const response = await request(app.getHttpServer())
@@ -88,13 +88,19 @@ describe('CourseController', () => {
     // then
     expect(response.body).toMatchInlineSnapshot(`
       {
-        "data": [
-          {
-            "category": 2,
-            "description": "description",
-            "title": "title",
-          },
-        ],
+        "data": {
+          "items": [
+            {
+              "category": 2,
+              "description": "description",
+              "title": "title",
+            },
+          ],
+          "pageNumber": 1,
+          "pageSize": 1,
+          "totalCount": 10,
+          "totalPage": 10,
+        },
         "message": "",
         "statusCode": "OK",
       }

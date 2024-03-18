@@ -62,10 +62,10 @@ describe('CourseRepository', () => {
       const condition = new CourseSearchCondition(0, 10);
 
       // when
-      const result = await courseRepository.findAll(condition);
+      const [courses] = await courseRepository.findAll(condition);
 
       // then
-      expect(result).toHaveLength(0);
+      expect(courses).toHaveLength(0);
     });
 
     it('강의 목록을 조회한다.', async () => {
@@ -78,12 +78,12 @@ describe('CourseRepository', () => {
       });
 
       // when
-      const result = await courseRepository.findAll(condition);
+      const [courses] = await courseRepository.findAll(condition);
 
       // then
-      expect(result).toHaveLength(1);
-      expect(result[0].title).toBe(course.title);
-      expect(result[0].instructorName).toBe(instructor.name);
+      expect(courses).toHaveLength(1);
+      expect(courses[0].title).toBe(course.title);
+      expect(courses[0].instructorName).toBe(instructor.name);
     });
 
     it('카테고리 기준으로 강의 목록을 조회한다.', async () => {
@@ -109,11 +109,11 @@ describe('CourseRepository', () => {
       });
 
       // when
-      const result = await courseRepository.findAll(condition);
+      const [courses] = await courseRepository.findAll(condition);
 
       // then
-      expect(result).toHaveLength(1);
-      expect(result[0].title).toBe(course.title);
+      expect(courses).toHaveLength(1);
+      expect(courses[0].title).toBe(course.title);
     });
 
     it('강의 명 기준으로 강의 목록을 조회한다.', async () => {
@@ -137,11 +137,11 @@ describe('CourseRepository', () => {
       });
 
       // when
-      const result = await courseRepository.findAll(condition);
+      const [courses] = await courseRepository.findAll(condition);
 
       // then
-      expect(result).toHaveLength(1);
-      expect(result[0].title).toBe(course.title);
+      expect(courses).toHaveLength(1);
+      expect(courses[0].title).toBe(course.title);
     });
 
     it('강사 명 기준으로 강의 목록을 조회한다.', async () => {
@@ -165,11 +165,11 @@ describe('CourseRepository', () => {
       });
 
       // when
-      const result = await courseRepository.findAll(condition);
+      const [courses] = await courseRepository.findAll(condition);
 
       // then
-      expect(result).toHaveLength(1);
-      expect(result[0].title).toBe(course.title);
+      expect(courses).toHaveLength(1);
+      expect(courses[0].title).toBe(course.title);
     });
 
     it('강의 목록을 페이징 단위로 페이지네이션을 한다.', async () => {
@@ -186,11 +186,11 @@ describe('CourseRepository', () => {
       });
 
       // when
-      const result = await courseRepository.findAll(condition);
+      const [courses] = await courseRepository.findAll(condition);
 
       // then
-      expect(result).toHaveLength(1);
-      expect(result[0].title).toBe(course.title);
+      expect(courses).toHaveLength(1);
+      expect(courses[0].title).toBe(course.title);
     });
   });
 });

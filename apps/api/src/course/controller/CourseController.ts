@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ResponseEntity } from '@app/web-common/res/ResponseEntity';
+import { Page } from '@app/web-common/res/page/Page';
 import { CourseCreateRequest } from './dto/CourseCreateRequest';
 import { CourseService } from '../service/CourseService';
 import { CourseFindAllRequest } from './dto/CourseFindAllRequest';
@@ -23,18 +24,25 @@ export class CourseController {
 
   @Get()
   async findAll(@Query() query: CourseFindAllRequest) {
-    const courses = await this.courseService.findAll(query.toCondition());
+    const [courses, totalCount] = await this.courseService.findAll(
+      query.toCondition(),
+    );
 
     return ResponseEntity.OK_WITH(
-      courses.map(
-        (course) =>
-          new CourseFindAllResponse(
-            course.id,
-            course.title,
-            course.description,
-            course.category,
-            course.instructorName,
-          ),
+      new Page(
+        query.pageNumber,
+        query.pageSize,
+        totalCount,
+        courses.map(
+          (course) =>
+            new CourseFindAllResponse(
+              course.id,
+              course.title,
+              course.description,
+              course.category,
+              course.instructorName,
+            ),
+        ),
       ),
     );
   }

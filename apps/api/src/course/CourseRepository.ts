@@ -46,6 +46,6 @@ export class CourseRepository {
     return queryBuilder
       .offset(condition.offset)
       .limit(condition.limit)
-      .getMany();
+      .getManyAndCount();
   }
 }
