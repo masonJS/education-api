@@ -1,11 +1,12 @@
-import { Exclude, Expose } from 'class-transformer';
+import { ResponseDto } from '@app/web-common/decorator/ResponseDto';
 
+@ResponseDto()
 export class Page<T> {
-  @Exclude() private readonly _pageNumber: number;
-  @Exclude() private readonly _pageSize: number;
-  @Exclude() private readonly _totalCount: number;
-  @Exclude() private readonly _totalPage: number;
-  @Exclude() private readonly _items: T[];
+  private readonly _pageNumber: number;
+  private readonly _pageSize: number;
+  private readonly _totalCount: number;
+  private readonly _totalPage: number;
+  private readonly _items: T[];
 
   constructor(
     pageNumber: number,
@@ -20,27 +21,22 @@ export class Page<T> {
     this._items = items;
   }
 
-  @Expose()
   get pageNumber(): number {
     return this._pageNumber;
   }
 
-  @Expose()
   get pageSize(): number {
     return this._pageSize;
   }
 
-  @Expose()
   get totalCount(): number {
     return this._totalCount;
   }
 
-  @Expose()
   get totalPage(): number {
     return this._totalPage;
   }
 
-  @Expose()
   get items(): T[] {
     return this._items;
   }

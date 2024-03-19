@@ -1,16 +1,13 @@
 import { CourseCategory } from '@app/entity/domain/course/type/enum/CourseCategory';
-import { Exclude, Expose } from 'class-transformer';
+import { ResponseDto } from '@app/web-common/decorator/ResponseDto';
 
+@ResponseDto()
 export class CourseFindAllResponse {
-  @Exclude() private readonly _id: number;
-
-  @Exclude() private readonly _title: string;
-
-  @Exclude() private readonly _description: string;
-
-  @Exclude() private readonly _category: CourseCategory;
-
-  @Exclude() private readonly _instructorName: string;
+  private readonly _id: number;
+  private readonly _title: string;
+  private readonly _description: string;
+  private readonly _category: CourseCategory;
+  private readonly _instructorName: string;
 
   constructor(
     id: number,
@@ -26,27 +23,22 @@ export class CourseFindAllResponse {
     this._instructorName = instructorName;
   }
 
-  @Expose()
   get id(): number {
     return this._id;
   }
 
-  @Expose()
   get title(): string {
     return this._title;
   }
 
-  @Expose()
   get description(): string {
     return this._description;
   }
 
-  @Expose()
   get category(): CourseCategory {
     return this._category;
   }
 
-  @Expose()
   get instructorName(): string {
     return this._instructorName;
   }
