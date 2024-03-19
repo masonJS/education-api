@@ -26,9 +26,10 @@ describe('Configuration', () => {
         "masterHost": "localhost",
         "name": "test",
         "password": "test",
-        "port": 5434,
+        "port": 5435,
         "readerHost": "localhost",
         "statementTimeout": 5000,
+        "synchronize": true,
         "user": "test",
       }
     `);

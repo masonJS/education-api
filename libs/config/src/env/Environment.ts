@@ -1,5 +1,6 @@
 import { IsNotEmpty, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import { SESEnvironment } from '@app/config/env/SesEnvironment';
 import { DatabaseEnvironment } from './DatabaseEnvironment';
 
 export class Environment {
@@ -7,4 +8,9 @@ export class Environment {
   @IsNotEmpty()
   @Type(() => DatabaseEnvironment)
   database: DatabaseEnvironment;
+
+  @ValidateNested()
+  @IsNotEmpty()
+  @Type(() => SESEnvironment)
+  ses: SESEnvironment;
 }
