@@ -9,10 +9,11 @@
     "build": "nest build",
     "start": "nest start",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "jest --runInBand",
     "prepare": "husky"
   },
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.535.0",
     "@js-joda/core": "^5.6.2",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^3.2.0",
@@ -94,7 +95,8 @@
       "^@app/web-client(|/.*)$": "<rootDir>/libs/web-client/src/$1",
       "^@app/logger(|/.*)$": "<rootDir>/libs/logger/src/$1",
       "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1",
-      "^@app/web-common(|/.*)$": "<rootDir>/libs/web-common/src/$1"
+      "^@app/web-common(|/.*)$": "<rootDir>/libs/web-common/src/$1",
+      "^@app/mailer(|/.*)$": "<rootDir>/libs/mailer/src/$1"
     }
   },
   "lint-staged": {

@@ -28,4 +28,12 @@ export class Enrolment {
   })
   @JoinColumn({ name: 'student_id', referencedColumnName: 'id' })
   student: Student;
+
+  static create(courseId: number, studentId: number): Enrolment {
+    const enrolment = new Enrolment();
+    enrolment.courseId = courseId;
+    enrolment.studentId = studentId;
+
+    return enrolment;
+  }
 }

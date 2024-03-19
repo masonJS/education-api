@@ -53,6 +53,12 @@
       ],
       "@app/web-common/*": [
         "libs/web-common/src/*"
+      ],
+      "@app/mailer": [
+        "libs/mailer/src"
+      ],
+      "@app/mailer/*": [
+        "libs/mailer/src/*"
       ]
     }
   }
